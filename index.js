@@ -49,10 +49,11 @@ module.exports.pitch = function pitch(request) {
 
       // resolve to project root
       const outputPath = path.resolve(process.cwd(), query.outputPath, swFile);
+      const parentPath = this.options ? this.options.output.path : this._compiler.outputPath;
 
       this.emitFile(
         // get relative path from parent compiler's output
-        path.relative(this.options.output.path, outputPath),
+        path.relative(parentPath, outputPath),
         compilation.assets[swFile].source()
       );
     }
